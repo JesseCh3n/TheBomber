@@ -60,8 +60,8 @@ public class NetworkPlayerShoot : NetworkBehaviour
             _onRocketShot(_rocketNum);
             _onSecondChanceUsed(_undoChance);
             _onAmmoRunout += gameObject.GetComponentInParent<NetworkPlayerController>().Die;
-            
-            if(_undoChance != 0)
+
+            if (_undoChance != 0)
             {
                 _isReady = true;
                 _checkEnabled = true;

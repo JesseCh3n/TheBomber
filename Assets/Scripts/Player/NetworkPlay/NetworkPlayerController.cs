@@ -39,6 +39,9 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
     {
         _playerMovement.SetPlayerSpeed(NetworkGameManager.GetInstance()._playerSpeed);
         SetPlayerHealth(NetworkGameManager.GetInstance()._playerHealth);
+        _playerShoot._bulletNum = NetworkGameManager.GetInstance()._totalBombs;
+        _playerShoot._rocketNum = NetworkGameManager.GetInstance()._totalRockets;
+        _playerShoot._undoChance = NetworkGameManager.GetInstance()._totalUndo;
         _uiManager.GameStarted();
     }
 
@@ -61,9 +64,6 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
                 _playerHealth.OnStart();
 
                 _playerShoot.OnStart();
-                _playerShoot.SetBulletNum(NetworkGameManager.GetInstance()._totalBombs);
-                _playerShoot.SetRocketNum(NetworkGameManager.GetInstance()._totalRockets);
-                _playerShoot.SetUndoChance(NetworkGameManager.GetInstance()._totalUndo);
 
                 NetworkGameManager.GetInstance().GetScoreManager()._scoreUpdated += FetchPlayerScoreServerRpc;
                 NetworkGameManager.GetInstance().GetScoreManager()._highScoreUpdated += FetchHighScoreServerRpc;

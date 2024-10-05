@@ -27,6 +27,8 @@ public class GameNetworkManager : MonoBehaviour
     [SerializeField] private TMP_InputField _joinCodeIF;
     [SerializeField] private TMP_InputField _playerName;
     [SerializeField] private GameObject _startBtn;
+    [SerializeField] private GameObject _testBtn;
+    [SerializeField] private GameObject _clientJoinedTxt;
 
     private static GameNetworkManager _instance;
     public static GameNetworkManager GetInstance()
@@ -93,7 +95,8 @@ public class GameNetworkManager : MonoBehaviour
         _joinCodeTxt.text = _joinCode;
         _statusText.text = "Joined as Host";
         _startBtn.SetActive(true);
-        //StartCoroutine(WaitForClientJoin());
+        _testBtn.SetActive(true);
+        _clientJoinedTxt.SetActive(true);
     }
 
     private async Task<RelayServerData> AllocateRelayServerAndGetCode(int maxConnection, string region = null)

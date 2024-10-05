@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbc4733b32e608b4f9aa017e9cb49bc6, type: 3}
-  m_Name: Level2
+  m_Name: Level3
   m_EditorClassIdentifier: 
-  _levelName: Level 2
-  _cannonNum: 2
-  _tankNum: 3
-  _truckNum: 3
-  _bossNum: 0
-  _totalBomb: 16
-  _totalRocket: 8
-  _secondChance: 4
-  _playerSpeed: 8
-  _playerHealth: 300
+  _levelName: Level 3
+  _cannonNum: 0
+  _tankNum: 0
+  _truckNum: 0
+  _bossNum: 1
+  _totalBomb: 10
+  _totalRocket: 6
+  _secondChance: 7
+  _playerSpeed: 6.5
+  _playerHealth: 100

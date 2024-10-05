@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
     {
         _object = gameObject.GetComponent<IDestroyable>();
         _health = _maxHealth;
+        _isDead = false;
         if (_onHealthUpdated != null)
         {
             _onHealthUpdated(_maxHealth);
@@ -53,6 +54,7 @@ public class Health : MonoBehaviour
 
     public void OnReset()
     {
+        if (_isDead) return;
         _health = _maxHealth;
         if(_onHealthUpdated != null)
         {
