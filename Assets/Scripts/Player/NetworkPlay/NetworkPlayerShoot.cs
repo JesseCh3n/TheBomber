@@ -55,10 +55,11 @@ public class NetworkPlayerShoot : NetworkBehaviour
             _onSecondChanceUsed += _uiManager.UpdateSecondChance;
             _onBulletShot += _uiManager.UpdateBulletNum;
             _onRocketShot += _uiManager.UpdateRocketNum;
-            _onAmmoRunout += gameObject.GetComponentInParent<NetworkPlayerController>().Die;
             _onBulletShot(_bulletNum);
             _onRocketShot(_rocketNum);
             _onSecondChanceUsed(_undoChance);
+            _onAmmoRunout += gameObject.GetComponentInParent<NetworkPlayerController>().Die;
+
             _isReady = true;
         }
     }
@@ -84,6 +85,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
 
             if (_playerInput._primaryShootPressed && _currentShootStrategy != null)
             {
+                Debug.Log("shoot button pressed " + _playerInput._primaryShootPressed);
                 if (IsSpawned)
                 {
                     OnPlayerShotServerRpc();
@@ -93,6 +95,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
             }
             else if (_playerInput._undoPressed && _undoChance > 0)
             {
+                Debug.Log("undo button pressed " + _playerInput._undoPressed);
                 if (_undoChance == 0)
                 {
                     return;
@@ -125,6 +128,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
         {
             StartCoroutine(GameOverCoroutine());
+            gameObject.GetComponentInParent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
         }
         else
         {
@@ -135,7 +139,10 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public void SetBulletNum(int num)
     {
         _bulletNum = num;
-        _onBulletShot(num);
+        if (IsOwner)
+        {
+            _onBulletShot(num);
+        }
     }
     public int GetBulletNum()
     {
@@ -144,19 +151,29 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public void DeductBulletNum()
     {
         _bulletNum--;
-        _onBulletShot(_bulletNum);
+        if (IsOwner)
+        {
+            _onBulletShot(_bulletNum);
+        }
     }
     public void IncreaseBulletNum()
     {
         _bulletNum++;
-        _onBulletShot(_bulletNum);
+        if (IsOwner)
+        {
+            _onBulletShot(_bulletNum);
+        }
     }
 
     public void SetRocketNum(int num)
     {
         _rocketNum = num;
-        _onRocketShot(_rocketNum);
+        if (IsOwner)
+        {
+            _onRocketShot(_rocketNum);
+        }
     }
+
     public int GetRocketNum()
     {
         return _rocketNum;
@@ -164,19 +181,30 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public void DeductRocketNum()
     {
         _rocketNum--;
-        _onRocketShot(_rocketNum);
+        if (IsOwner)
+        {
+            _onRocketShot(_rocketNum);
+        }
     }
+
     public void IncreaseRocketNum()
     {
         _rocketNum++;
-        _onRocketShot(_rocketNum);
+        if (IsOwner)
+        {
+            _onRocketShot(_rocketNum);
+        }
     }
 
     public void SetUndoChance(int num)
     {
         _undoChance = num;
-        _onSecondChanceUsed(_undoChance);
+        if (IsOwner)
+        {
+            _onSecondChanceUsed(_undoChance);
+        }
     }
+
     public int GetUndoChance()
     {
         return _undoChance;
@@ -184,9 +212,18 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public void DeductUndoChance()
     {
         _undoChance--;
-        _onSecondChanceUsed(_undoChance);
+        if (IsOwner)
+        {
+            _onSecondChanceUsed(_undoChance);
+        }
     }
 
+    public void OnDie()
+    {
+        _onSecondChanceUsed -= _uiManager.UpdateSecondChance;
+        _onBulletShot -= _uiManager.UpdateBulletNum;
+        _onRocketShot -= _uiManager.UpdateRocketNum;
+    }
 
     IEnumerator GameOverCoroutine()
     {

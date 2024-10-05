@@ -26,7 +26,6 @@ public class NetworkPlayerInfo : NetworkBehaviour
     //Subscribe 
     void Start()
     {
-        Debug.Log("Client is here 12");
         //_onGameReady += SetPlayerServerRpc;
         _playerName.OnValueChanged += OnNameChanged;
         _playerHealth.OnValueChanged += OnHealthChanged;
@@ -85,6 +84,5 @@ public class NetworkPlayerInfo : NetworkBehaviour
     {
         _playerHealth.Value = value;
     }
-
 }
 

@@ -12,6 +12,9 @@ public class NetworkScoreManager : NetworkBehaviour
 
     Dictionary<ulong, int> _playerScoresDict = new Dictionary<ulong, int>();
 
+    public Action _scoreUpdated;
+    public Action _highScoreUpdated;
+
     [System.Serializable]
     public class ScoreInfo
     {
@@ -30,8 +33,67 @@ public class NetworkScoreManager : NetworkBehaviour
         if (IsServer)
         {
             _playerScoresDict.Add(playerObject.OwnerClientId, 0);
-            GetScoreClientRpc(_playerScoresDict[playerObject.OwnerClientId]);
+            GetScoreClientRpc();
             SetHighScore();
+        }
+    }
+
+    public void FetchHighScore()
+    {
+        if (IsServer)
+        {
+            SetHighScoreClientRpc(_highScore);
+        }
+    }
+
+    [ClientRpc]
+    public void SetHighScoreClientRpc(int highscore)
+    {
+        NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateHighScore(highscore);
+    }
+
+    public void FetchScore(NetworkObject playerObject)
+    {
+        if (IsServer)
+        {
+            ClientRpcParams clientRpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { playerObject.OwnerClientId }
+                }
+            };
+            SetPlayerScoreClientRpc(_playerScoresDict[playerObject.OwnerClientId], clientRpcParams);
+        }
+    }
+
+    [ClientRpc]
+    public void SetPlayerScoreClientRpc(int score, ClientRpcParams clientRpcParams = default)
+    {
+        NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateScore(score);
+    }
+
+    [ClientRpc]
+    public void GetHighScoreClientRpc()
+    {
+        _highScoreUpdated?.Invoke();
+        //NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateHighScore(highScore);
+    }
+
+    [ClientRpc]
+    public void GetScoreClientRpc()
+    {
+        _scoreUpdated?.Invoke();
+        //NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateScore(score);
+    }
+
+    public void IncrementScore(ulong id)
+    {
+        if (IsServer)
+        {
+            _playerScoresDict[id]++;
+            SetHighScore();
+            GetScoreClientRpc();
         }
     }
 
@@ -41,32 +103,11 @@ public class NetworkScoreManager : NetworkBehaviour
         if (IsServer)
         {
             _highScore = _playerScoresDict.Values.Max();
-            GetHighScoreClientRpc(_highScore);
+            GetHighScoreClientRpc();
         }
     }
 
-    [ClientRpc]
-    public void GetHighScoreClientRpc(int highScore)
-    {
-        NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateHighScore(highScore);
-    }
-
-    [ClientRpc]
-    public void GetScoreClientRpc(int score)
-    {
-        NetworkManager.LocalClient.PlayerObject.gameObject.GetComponent<NetworkUIManager>().UpdateScore(score);
-    }
-
-    public void IncrementScore(ulong id)
-    {
-        if (IsServer)
-        {
-            _playerScoresDict[id]++;
-            SetHighScore();
-            GetScoreClientRpc(_playerScoresDict[id]);
-        }
-    }
-
+    //Ending Sequence
     public void GetHighScore()
     {
         ScoreInfo temp = new ScoreInfo();

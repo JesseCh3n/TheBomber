@@ -54,65 +54,12 @@ public class NetworkGameManager : NetworkBehaviour
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Server);
 
-    /*
-    public NetworkVariable<int> _totalCannons = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalTanks = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalTrucks = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalBosses = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalBombs = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalRockets = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<int> _totalUndo = new NetworkVariable<int>(
-        0,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<float> _playerSpeed = new NetworkVariable<float>(
-        0f,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<float> _playerHealth = new NetworkVariable<float>(
-        0f,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-
-    public NetworkVariable<bool> _gameReady = new NetworkVariable<bool>(
-        false,
-        NetworkVariableReadPermission.Everyone,
-        NetworkVariableWritePermission.Server);
-    */
-
     public void OnLevelChangedSpawnEnemies(FixedString64Bytes previousValue, FixedString64Bytes newValue)
     {
         if (previousValue != newValue)
         {
             if (IsServer)
             {
-                Debug.Log("Client is here 6");
                 GetSpawner().SpawnCannon(_totalCannons);
                 GetSpawner().SpawnTruck(_totalTrucks);
                 GetSpawner().SpawnTank(_totalTanks);

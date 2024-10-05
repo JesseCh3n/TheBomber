@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
 
     private IDestroyable _object;
 
-    public bool _isDead { get; private set; }
+    public bool _isDead;
 
     private float _health;
 

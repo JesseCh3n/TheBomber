@@ -22,9 +22,15 @@ public class SceneUIManager : NetworkBehaviour
     {
         if (IsServer)
         {
-            Disconnect();
-            SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
+            RestartSceneClientRpc();
         }
+    }
+
+    [ClientRpc]
+    public void RestartSceneClientRpc()
+    {
+        Disconnect();
+        SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
     }
 
     private void Disconnect()

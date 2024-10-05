@@ -8,6 +8,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
     private Health _playerHealth;
     private NetworkPlayerMovement _playerMovement;
     private NetworkPlayerRotation _playerRotation;
+    private NetworkTransformRotation _transformRotation;
     private NetworkPlayerShoot _playerShoot;
     [SerializeField]
     public NetworkPlayerInfo _playerInfo;
@@ -24,6 +25,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
         _playerHealth = gameObject.GetComponent<Health>();
         _playerMovement = gameObject.GetComponent<NetworkPlayerMovement>();
         _playerRotation = gameObject.GetComponent<NetworkPlayerRotation>();
+        _transformRotation = gameObject.GetComponentInChildren<NetworkTransformRotation>();
         _playerShoot = gameObject.GetComponent<NetworkPlayerShoot>();
         _uiManager = GetComponentInParent<NetworkUIManager>();
         NetworkGameManager.GetInstance()._bombUpdated += _playerShoot.SetBulletNum;
@@ -35,19 +37,16 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
 
     public void SetPlayer()
     {
-        SetPlayerHealth(NetworkGameManager.GetInstance()._playerHealth);
         _playerMovement.SetPlayerSpeed(NetworkGameManager.GetInstance()._playerSpeed);
-        if (IsOwner)
-        {
-            _uiManager.GameStarted();
-        }
+        SetPlayerHealth(NetworkGameManager.GetInstance()._playerHealth);
+        _uiManager.GameStarted();
     }
 
     public void OnStart()
     {
         _playerMovement.OnStart();
         _playerRotation.OnStart();
-        _playerShoot.OnStart();
+        _transformRotation.OnStart();
         if (IsOwner)
         {
             if (_uiManager != null)
@@ -56,15 +55,19 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
                 Debug.Log("level name " + NetworkGameManager.GetInstance()._levelName.Value.ToString());
                 _uiManager.UpdateLevel(NetworkGameManager.GetInstance()._levelName.Value.ToString());
                 NetworkGameManager.GetInstance()._levelUpdated += _uiManager.UpdateLevel;
+
+                _playerHealth.OnStart();
                 _playerHealth._onHealthUpdated += _uiManager.UpdateHealth;
                 _playerHealth._onHealthUpdated += UpdatePlayerHealth;
-                _playerHealth.OnStart();
 
+                _playerShoot.OnStart();
                 _playerShoot.SetBulletNum(NetworkGameManager.GetInstance()._totalBombs);
                 _playerShoot.SetRocketNum(NetworkGameManager.GetInstance()._totalRockets);
                 _playerShoot.SetUndoChance(NetworkGameManager.GetInstance()._totalUndo);
 
                 AddPlayerScoreServerRpc();
+                NetworkGameManager.GetInstance().GetScoreManager()._scoreUpdated += FetchPlayerScoreServerRpc;
+                NetworkGameManager.GetInstance().GetScoreManager()._highScoreUpdated += FetchHighScoreServerRpc;
             }
         }
     }
@@ -75,6 +78,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
         {
             ReducePlayerNumServerRpc();
             _playerInput._isDiabled = true;
+            OnDie();
         }
     }
 
@@ -134,4 +138,30 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
         NetworkGameManager.GetInstance().GetScoreManager().PopulateScore(gameObject.GetComponentInParent<NetworkObject>());
     }
 
+    [ServerRpc]
+    public void FetchPlayerScoreServerRpc()
+    {
+        NetworkGameManager.GetInstance().GetScoreManager().FetchScore(gameObject.GetComponentInParent<NetworkObject>());
+    }
+
+    [ServerRpc]
+    public void FetchHighScoreServerRpc()
+    {
+        NetworkGameManager.GetInstance().GetScoreManager().FetchHighScore();
+    }
+
+    public void OnDie()
+    {
+        NetworkGameManager.GetInstance()._bombUpdated -= _playerShoot.SetBulletNum;
+        NetworkGameManager.GetInstance()._rocketUpdated -= _playerShoot.SetRocketNum;
+        NetworkGameManager.GetInstance()._undoUpdated -= _playerShoot.SetUndoChance;
+        NetworkGameManager.GetInstance()._healthUpdated -= SetPlayerHealth;
+        NetworkGameManager.GetInstance()._speedUpdated -= _playerMovement.SetPlayerSpeed;
+        if (IsOwner)
+        {
+            _playerHealth._onHealthUpdated -= _uiManager.UpdateHealth;
+            _playerHealth._onHealthUpdated -= UpdatePlayerHealth;
+            _playerShoot.OnDie();
+        }
+    }
 }

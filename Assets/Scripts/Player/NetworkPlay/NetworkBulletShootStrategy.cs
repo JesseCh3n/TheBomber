@@ -37,7 +37,6 @@ public class NetworkBulletShootStrategy : NetworkBehaviour, IshootStrategy
         {
             pooledBullet.ChangeOwnership(serverRpcParams.Receive.SenderClientId);
         }
-
         Rigidbody bulletRB = pooledBullet.GetComponent<Rigidbody>();
         //pooledBullet.GetComponent<NetworkProjectileEnemyInteract>()._clientID = serverRpcParams.Receive.SenderClientId;
         pooledBullet.GetComponent<NetworkProjectileEnemyInteract>()._prefab = NetworkGameManager.GetInstance().GetSpawner()._bulletPrefab;

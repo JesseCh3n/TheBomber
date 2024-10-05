@@ -37,7 +37,6 @@ public class NetworkLevelManager : NetworkBehaviour
 
         if (IsServer)
         {
-            Debug.Log("Level is here");
             UpdateParamsClientRpc(lvl._totalBomb, lvl._totalRocket, lvl._secondChance, lvl._playerHealth, lvl._playerSpeed);
             NetworkGameManager.GetInstance()._levelName.OnValueChanged += NetworkGameManager.GetInstance().OnLevelChangedSpawnEnemies;
             
@@ -66,7 +65,6 @@ public class NetworkLevelManager : NetworkBehaviour
         NetworkGameManager.GetInstance()._playerHealth = playerHealth;
         NetworkGameManager.GetInstance()._playerSpeed = playerSpeed;
     }
-
 
     public void GameOverServer()
     {

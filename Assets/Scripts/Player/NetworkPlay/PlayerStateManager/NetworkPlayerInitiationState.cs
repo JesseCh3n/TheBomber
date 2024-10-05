@@ -10,7 +10,6 @@ public class NetworkPlayerInitiationState : NetworkPlayerState
         {
             _playerManager.gameObject.GetComponentInChildren<NetworkPlayerController>().SetPlayer();
         }
-
         Debug.Log("Player entering initiation state");
     }
 

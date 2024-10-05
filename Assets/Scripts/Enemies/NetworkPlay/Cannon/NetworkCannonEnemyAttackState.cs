@@ -28,11 +28,15 @@ public class NetworkCannonEnemyAttackState : NetworkCannonEnemyState
 
     public void FindPlayer()
     {
-        _enemy._players = GameObject.FindGameObjectsWithTag("Player");
-        //Debug.Log(_enemy._players);
-        //Debug.Log(_enemy._players.Length);
-        int randIndex = Random.Range(0, _enemy._players.Length);
-        _playerTransform = _enemy._players[randIndex].transform;
+        if (_enemy.CheckServer())
+        {
+            _enemy._players = GameObject.FindGameObjectsWithTag("Player");
+            Debug.Log("Found Players " + _enemy._players);
+            Debug.Log("This many players " + _enemy._players.Length);
+            int randIndex = Random.Range(0, _enemy._players.Length);
+            Debug.Log("Player index I found " + randIndex);
+            _playerTransform = _enemy._players[randIndex].transform;
+        }
     }
 
     public override void OnStateEnter()

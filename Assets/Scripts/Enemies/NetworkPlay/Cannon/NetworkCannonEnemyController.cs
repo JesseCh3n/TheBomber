@@ -84,4 +84,9 @@ public class NetworkCannonEnemyController : NetworkBehaviour, IDestroyable
             }
         }
     }
+
+    public bool CheckServer()
+    {
+        return IsServer;
+    }
 }

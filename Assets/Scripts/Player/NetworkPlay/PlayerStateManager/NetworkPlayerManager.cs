@@ -23,14 +23,12 @@ public class NetworkPlayerManager : NetworkBehaviour
     {
         _currentState = new NetworkPlayerAwakeState(this);
         _currentState.OnStateEnter();
-
     }
 
     // Update is called once per frame
     void Update()
     {
         _currentState.OnStateUpdate();
-
     }
 
     public void ChangeState(NetworkPlayerState state)
@@ -67,52 +65,4 @@ public class NetworkPlayerManager : NetworkBehaviour
         }
     }
 
-    /*
-    [ServerRpc]
-    public void ActivatePlayerServerRpc(ServerRpcParams serverRpcParams = default)
-    {
-        var clientId = serverRpcParams.Receive.SenderClientId;
-        if (NetworkManager.ConnectedClients.ContainsKey(clientId))
-        {
-            NetworkObject player = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject;
-
-            player.gameObject.GetComponentInChildren<CharacterController>().enabled = true;
-            player.gameObject.GetComponentInChildren<CapsuleCollider>().enabled = true;
-            player.gameObject.GetComponentInChildren<NetworkPlayerMovement>().enabled = true;
-            player.gameObject.GetComponentInChildren<NetworkPlayerRotation>().enabled = true;
-            player.gameObject.GetComponentInChildren<NetworkPlayerInfo>().enabled = true;
-        }
-    }
-
-    [ServerRpc]
-    public void InitiatePlayerServerRpc(ServerRpcParams serverRpcParams = default)
-    {
-        Debug.Log("Client is here 13");
-        var clientId = serverRpcParams.Receive.SenderClientId;
-        if (NetworkManager.ConnectedClients.ContainsKey(clientId))
-        {
-            var client = NetworkManager.ConnectedClients[clientId];
-            NetworkGameManager.GetInstance().GetCurrentLevel().OnPlayerJoined(client.PlayerObject);
-        }
-    }
-
-    public void LevelChanged()
-    {
-        Debug.Log("Client is here 9");
-        SetPlayerServerRpc();
-    }
-
-    [ServerRpc]
-    public void SetPlayerServerRpc(ServerRpcParams serverRpcParams = default)
-    {
-        Debug.Log("Client is here 10");
-        var clientId = serverRpcParams.Receive.SenderClientId;
-        if (NetworkManager.ConnectedClients.ContainsKey(clientId))
-        {
-            Debug.Log("Client is here 11");
-            var client = NetworkManager.ConnectedClients[clientId];
-            NetworkGameManager.GetInstance().GetCurrentLevel().SetPlayer(client.PlayerObject);
-        }
-    }
-    */
 }

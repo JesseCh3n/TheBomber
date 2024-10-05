@@ -45,6 +45,7 @@ public class NetworkPlayerInput : NetworkBehaviour
         {
             return;
         }
+
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
         _mouseX = Input.GetAxis("Mouse X");
@@ -62,6 +63,7 @@ public class NetworkPlayerInput : NetworkBehaviour
         _commandPressed = _commandPressed || Input.GetKeyDown(KeyCode.G);
         _undoPressed = _undoPressed || Input.GetKeyDown(KeyCode.R);
         _escapePressed = _escapePressed || Input.GetKeyDown(KeyCode.Escape);
+
         /*
         if (IsServer)
         {

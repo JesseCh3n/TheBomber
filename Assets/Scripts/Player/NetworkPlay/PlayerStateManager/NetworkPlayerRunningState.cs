@@ -10,11 +10,6 @@ public class NetworkPlayerRunningState : NetworkPlayerState
         {
             _playerManager.gameObject.GetComponentInChildren<NetworkPlayerController>().OnStart();
         }
-        else
-        {
-            _playerManager.gameObject.GetComponentInChildren<NetworkPlayerMovement>().OnStart();
-            _playerManager.gameObject.GetComponentInChildren<NetworkPlayerRotation>().OnStart();
-        }
 
         Debug.Log("Player entering running state");
     }

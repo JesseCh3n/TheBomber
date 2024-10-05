@@ -31,13 +31,19 @@ public class NetworkPlayerMovement : NetworkBehaviour
     [ServerRpc]
     private void MovePlayerServerRpc(float vertical, float speed)
     {
-        _characterController.Move((transform.forward * (vertical + 1f)) * speed * Time.deltaTime);
+        if(vertical != 0)
+        {
+            Debug.Log("input is " + vertical);
+            Debug.Log("Speed is " + speed);
+        }
+
+        _characterController.Move((transform.forward * (vertical + 1f)) * speed * Time.fixedDeltaTime);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (IsLocalPlayer && _isReady)
+        if (_isReady)
         {
             MovePlayerServerRpc(_playerInput._vertical, _playerConstantSpeed);
         }
