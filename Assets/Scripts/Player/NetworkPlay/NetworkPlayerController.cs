@@ -56,18 +56,18 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
                 _uiManager.UpdateLevel(NetworkGameManager.GetInstance()._levelName.Value.ToString());
                 NetworkGameManager.GetInstance()._levelUpdated += _uiManager.UpdateLevel;
 
-                _playerHealth.OnStart();
                 _playerHealth._onHealthUpdated += _uiManager.UpdateHealth;
                 _playerHealth._onHealthUpdated += UpdatePlayerHealth;
+                _playerHealth.OnStart();
 
                 _playerShoot.OnStart();
                 _playerShoot.SetBulletNum(NetworkGameManager.GetInstance()._totalBombs);
                 _playerShoot.SetRocketNum(NetworkGameManager.GetInstance()._totalRockets);
                 _playerShoot.SetUndoChance(NetworkGameManager.GetInstance()._totalUndo);
 
-                AddPlayerScoreServerRpc();
                 NetworkGameManager.GetInstance().GetScoreManager()._scoreUpdated += FetchPlayerScoreServerRpc;
                 NetworkGameManager.GetInstance().GetScoreManager()._highScoreUpdated += FetchHighScoreServerRpc;
+                AddPlayerScoreServerRpc();
             }
         }
     }
@@ -94,7 +94,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
             _playerHealth._maxHealth = health;
             ConnectionNotificationManager.Singleton.SetPlayerHealth(_networkPlayer, health);
             gameObject.GetComponentInParent<NetworkPlayerManager>().GetComponentInChildren<NetworkPlayerInfo>().SetHealth(health);
-            _playerHealth.OnReset();
+            //_playerHealth.OnReset();
         }
     }
 

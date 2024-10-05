@@ -16,6 +16,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public ulong _playerID;
 
     private bool _isReady = false;
+    private bool _checkEnabled = false;
 
     private NetworkPlayerInput _playerInput;
     private NetworkBulletShootStrategy _bulletStrategy;
@@ -59,8 +60,12 @@ public class NetworkPlayerShoot : NetworkBehaviour
             _onRocketShot(_rocketNum);
             _onSecondChanceUsed(_undoChance);
             _onAmmoRunout += gameObject.GetComponentInParent<NetworkPlayerController>().Die;
-
-            _isReady = true;
+            
+            if(_undoChance != 0)
+            {
+                _isReady = true;
+                _checkEnabled = true;
+            }
         }
     }
 
@@ -125,14 +130,14 @@ public class NetworkPlayerShoot : NetworkBehaviour
 
     public void CheckAmmo()
     {
-        if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
+        if (_checkEnabled)
         {
-            StartCoroutine(GameOverCoroutine());
-            gameObject.GetComponentInParent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
-        }
-        else
-        {
-            return;
+            if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
+            {
+                _checkEnabled = false;
+                StartCoroutine(GameOverCoroutine());
+                gameObject.GetComponentInParent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
+            }
         }
     }
 
