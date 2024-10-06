@@ -51,16 +51,13 @@ public class NetworkTankEnemyAttackState : NetworkTankEnemyState
 
     public override void OnStateUpdate()
     {
-        if (_playerTransform == null)
-        {
-            FindPlayer();
-        }
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
         }
         else if (_timer <= 0)
         {
+            FindPlayer();
             if (_playerTransform != null)
             {
                 Rotate(_playerTransform);

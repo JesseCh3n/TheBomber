@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6948220987604241685}
   - component: {fileID: 8178570626280457380}
   - component: {fileID: 2148305388303748820}
-  - component: {fileID: -4102342708343922988}
+  - component: {fileID: -1628639464709946282}
   m_Layer: 0
   m_Name: BossPrefab
   m_TagString: Enemy
@@ -154,7 +154,7 @@ MonoBehaviour:
   _bulletVelocity: 150
   _shootingRate: 3
   _pooledBoss: {fileID: 0}
---- !u!114 &-4102342708343922988
+--- !u!114 &-1628639464709946282
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 578530271300847561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07573bdbf51c34942ba5fe20571f0927, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f92dc042ddf4345aeb2e6c2c2fabaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2586006307577771765

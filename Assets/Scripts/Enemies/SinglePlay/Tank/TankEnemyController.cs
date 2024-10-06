@@ -62,7 +62,7 @@ public class TankEnemyController : MonoBehaviour, IDestroyable
     public void Die()
     {
         //_tankDie();
-        ObjectPool.Singleton.ReturnPooledObject(this._pooledTank, GameManager.GetInstance().GetSpawner()._tankPrefab);
+        gameObject.GetComponent<PooledObject>().Destroy();
     }
 
     public void PlayerStartShooting()

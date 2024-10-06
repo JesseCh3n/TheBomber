@@ -95,7 +95,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
             _playerHealth._maxHealth = health;
             ConnectionNotificationManager.Singleton.SetPlayerHealth(_networkPlayer, health);
             gameObject.GetComponentInParent<NetworkPlayerManager>().GetComponentInChildren<NetworkPlayerInfo>().SetHealth(health);
-            //_playerHealth.OnReset();
+            _playerHealth.OnReset();
         }
     }
 

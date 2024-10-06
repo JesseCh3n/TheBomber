@@ -39,16 +39,14 @@ public class NetworkBossEnemyController : NetworkBehaviour, IDestroyable
         if (IsServer)
         {
             _navigation.FreeRoaming();
-            if (_players == null)
-            {
-                FindPlayer();
-            }
+
             if (_timer > 0)
             {
                 _timer -= Time.deltaTime;
             }
             else if (_timer <= 0)
             {
+                FindPlayer();
                 if (_playerTransform != null)
                 {
                     _agent.isStopped = true;

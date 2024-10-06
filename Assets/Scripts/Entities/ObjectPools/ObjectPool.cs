@@ -1,120 +1,75 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-
-    private static ObjectPool _instance;
-
-    public static ObjectPool Singleton { get { return _instance; } }
-
-    [SerializeField] List<PoolConfigObject> _pooledPrefabsList;
-
-    Dictionary<GameObject, Queue<PooledObject>> _pooledObjects = new Dictionary<GameObject, Queue<PooledObject>>();
-
-    private bool _hasInitialized = false;
-
-    public void Awake()
+    public int _startSize;
+    public List<PooledObject> _objectPool = new List<PooledObject>();
+    public List<PooledObject> _usedPool = new List<PooledObject>();
+    private PooledObject _tempObject;
+    [SerializeField] private PooledObject _objectToPool;
+    // Start is called before the first frame update
+    void Start()
     {
-        if (_instance != null && _instance != this)
+        Initialized();
+    }
+    private void Initialized()
+    {
+        for (int i = 0; i < _startSize; i++)
         {
-            Destroy(this.gameObject);
+            AddNewObject();
+        }
+    }
+
+    private void AddNewObject()
+    {
+        _tempObject = Instantiate(_objectToPool, transform).GetComponent<PooledObject>();
+        _tempObject.gameObject.SetActive(false);
+        _tempObject.SetObjectPool(this);
+        _objectPool.Add(_tempObject);
+    }
+    //Retrieves an Object from the pool
+    public PooledObject GetPooledObject()
+    {
+
+        if (_objectPool.Count > 0)
+        {
+            _tempObject = _objectPool[0];
+            _usedPool.Add(_tempObject);
+            _objectPool.RemoveAt(0);
         }
         else
         {
-            _instance = this;
+            AddNewObject();
+            _tempObject = GetPooledObject();
         }
-    }
+        _tempObject.gameObject.SetActive(true);
 
-    public void Start()
-    {
-        InitializePool();
-    }
 
-    public void OnDisable()
-    {
-        ClearPool();
-    }
+        return _tempObject;
 
-    public PooledObject GetPooledObject(GameObject prefab)
-    {
-        return GetPooledObjectInternal(prefab, Vector3.zero, Quaternion.identity);
     }
-
-    public PooledObject GetPooledObject(GameObject prefab, Vector3 position, Quaternion rotation)
+    public void DestroyPooledObject(PooledObject obj, float time = 0)
     {
-        return GetPooledObjectInternal(prefab, position, rotation);
-    }
-
-    public void ReturnPooledObject(PooledObject pooledObject, GameObject prefab)
-    {
-        var go = pooledObject.gameObject;
-        go.SetActive(false);
-        _pooledObjects[prefab].Enqueue(pooledObject);
-    }
-
-    public void AddPrefab(GameObject prefab, int prewarmCount = 0)
-    {
-        RegisterPrefabInternal(prefab, prewarmCount);
-    }
-
-    private void RegisterPrefabInternal (GameObject prefab, int prewarmCount)
-    {
-        var prefabQueue = new Queue<PooledObject>();
-        _pooledObjects[prefab] = prefabQueue;
-        for (int i = 0; i< prewarmCount; i++)
+        if (time == 0)
         {
-            var go = Instantiate(prefab);
-            PooledObject pooledGo = go.GetComponent<PooledObject>();
-            pooledGo.SetObjectPool(prefab, this);
-            ReturnPooledObject(pooledGo, prefab);
-        }
-    }
-
-    private PooledObject GetPooledObjectInternal(GameObject prefab, Vector3 position, Quaternion rotation)
-    {
-        var queue = _pooledObjects[prefab];
-
-        PooledObject pooledObject;
-        if (queue.Count > 0)
-        {
-            pooledObject = queue.Dequeue();
+            obj.Destroy();
         }
         else
         {
-            pooledObject = Instantiate(prefab).GetComponent<PooledObject>();
+            obj.Destroy(time);
         }
-
-        var go = pooledObject.gameObject;
-        go.SetActive(true);
-
-        go.transform.position = position;
-        go.transform.rotation = rotation;
-
-        return pooledObject;
     }
 
-    public void InitializePool()
+    public void RestoreObject(PooledObject obj)
     {
-        if (_hasInitialized) return;
-        foreach (var configObject in _pooledPrefabsList)
-        {
-            RegisterPrefabInternal(configObject.Prefab, configObject.PrewarmCount);
-        }
-        _hasInitialized = true;
-    }
-
-    public void ClearPool()
-    {
-        _pooledObjects.Clear();
-    }
-
-    [Serializable]
-    struct PoolConfigObject
-    {
-        public GameObject Prefab;
-        public int PrewarmCount;
+        obj.gameObject.SetActive(false);
+        _usedPool.Remove(obj);
+        Destroy(obj.gameObject);
+        _tempObject = Instantiate(_objectToPool, transform).GetComponent<PooledObject>();
+        _tempObject.gameObject.SetActive(false);
+        _tempObject.SetObjectPool(this);
+        _objectPool.Add(_tempObject);
     }
 }

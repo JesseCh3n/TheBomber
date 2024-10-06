@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   _levelName: Level 1
-  _cannonNum: 2
-  _tankNum: 0
-  _truckNum: 1
+  _cannonNum: 1
+  _tankNum: 1
+  _truckNum: 2
   _bossNum: 0
   _totalBomb: 10
-  _totalRocket: 3
+  _totalRocket: 10
   _secondChance: 5
   _playerSpeed: 5
-  _playerHealth: 20
+  _playerHealth: 100

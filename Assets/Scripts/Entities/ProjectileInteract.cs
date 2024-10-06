@@ -26,13 +26,13 @@ public class ProjectileInteract : MonoBehaviour
         {
             Health damageable = other.gameObject.GetComponent<Health>();
             damageable.DeductHealth(_damage);
-            _pooledProjectile.Destroy(1f);
+            //_pooledProjectile.Destroy(1f);
         }
         else if (other.gameObject.CompareTag("Enemy"))
         {
             _onEnemyHit();
             other.gameObject.GetComponent<IDestroyable>().Die();
-            _pooledProjectile.Destroy(1f);
+            //_pooledProjectile.Destroy(1f);
         }
     }
 

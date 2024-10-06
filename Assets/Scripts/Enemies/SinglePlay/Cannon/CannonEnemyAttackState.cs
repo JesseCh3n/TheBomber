@@ -10,7 +10,11 @@ public class CannonEnemyAttackState : CannonEnemyState
     public CannonEnemyAttackState(CannonEnemyController enemy) : base(enemy) { }
     public void Shoot()
     {
-        PooledObject pooledBullet = ObjectPool.Singleton.GetPooledObject(_enemy._bombPrefab, _enemy._shootPosition.position, _enemy._shootPosition.rotation);
+        //PooledObject pooledBullet = ObjectPool.Singleton.GetPooledObject(_enemy._bombPrefab, _enemy._shootPosition.position, _enemy._shootPosition.rotation);
+        PooledObject pooledBullet = GameManager.GetInstance().GetSpawner()._bulletPool.GetPooledObject();
+        pooledBullet.transform.position = _enemy._shootPosition.position;
+        pooledBullet.transform.rotation = _enemy._shootPosition.rotation;
+        pooledBullet.gameObject.SetActive(true);
         Rigidbody bullet = pooledBullet.GetComponent<Rigidbody>();
         bullet.AddForce(bullet.transform.forward * _enemy._bulletVelocity, ForceMode.VelocityChange);
         //ProjectileMotion bullet = pooledBullet.GetComponent<ProjectileMotion>();
@@ -48,16 +52,13 @@ public class CannonEnemyAttackState : CannonEnemyState
 
     public override void OnStateUpdate()
     {
-        if(_playerTransform == null)
-        {
-            FindPlayer();
-        }
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
         }
         else if (_timer <= 0)
         {
+            FindPlayer();
             if (_playerTransform != null)
             {
                 Rotate(_playerTransform);

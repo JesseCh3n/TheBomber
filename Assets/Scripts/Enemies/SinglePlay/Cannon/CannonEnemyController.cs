@@ -53,7 +53,7 @@ public class CannonEnemyController : MonoBehaviour, IDestroyable
     public void Die()
     {
         //_cannonDie();
-        ObjectPool.Singleton.ReturnPooledObject(this._pooledCannon, GameManager.GetInstance().GetSpawner()._cannonPrefab);
+        gameObject.GetComponent<PooledObject>().Destroy();
     }
 
     public void PlayerStartShooting()

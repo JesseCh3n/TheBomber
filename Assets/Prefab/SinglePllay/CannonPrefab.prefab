@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1679003784951076805}
   - component: {fileID: 8301299646533181463}
-  - component: {fileID: 8594098243019234620}
   - component: {fileID: 6430617127869323292}
+  - component: {fileID: 6365897414301837461}
   m_Layer: 0
   m_Name: CannonPrefab
   m_TagString: Enemy
@@ -56,18 +56,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 2}
   m_Center: {x: 0, y: 0.8, z: -0.2}
---- !u!114 &8594098243019234620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5269679658440354043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07573bdbf51c34942ba5fe20571f0927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6430617127869323292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +75,19 @@ MonoBehaviour:
   _bulletVelocity: 120
   _shootingRate: 4
   _playerShot: 0
-  _pooledCannon: {fileID: 8594098243019234620}
+  _pooledCannon: {fileID: 0}
+--- !u!114 &6365897414301837461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5269679658440354043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f92dc042ddf4345aeb2e6c2c2fabaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6849852693803839157
 GameObject:
   m_ObjectHideFlags: 0

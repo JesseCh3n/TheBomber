@@ -41,9 +41,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6701554270175790385}
   - component: {fileID: 652807910994402379}
-  - component: {fileID: 3324592118137289579}
   - component: {fileID: 3510427972110158205}
   - component: {fileID: 808458196943827933}
+  - component: {fileID: -7180216828207275138}
   m_Layer: 0
   m_Name: TankPrefab
   m_TagString: Enemy
@@ -88,18 +88,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.5, y: 2, z: 3}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &3324592118137289579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7148849394894954900}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07573bdbf51c34942ba5fe20571f0927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3510427972110158205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,7 +109,7 @@ MonoBehaviour:
   _bulletVelocity: 100
   _shootingRate: 5
   _playerShot: 0
-  _pooledTank: {fileID: 3324592118137289579}
+  _pooledTank: {fileID: 0}
 --- !u!195 &808458196943827933
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -144,6 +132,18 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-7180216828207275138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7148849394894954900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f92dc042ddf4345aeb2e6c2c2fabaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7228263771033074266
 PrefabInstance:
   m_ObjectHideFlags: 0

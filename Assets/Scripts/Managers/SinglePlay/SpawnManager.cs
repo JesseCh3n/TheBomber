@@ -6,13 +6,17 @@ using UnityEngine.AI;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject _cannonPrefab;
-    public GameObject _tankPrefab;
-    public GameObject _truckPrefab;
+    public ObjectPool _cannonPool;
+    public ObjectPool _tankPool;
+    public ObjectPool _truckPool;
+    public ObjectPool _bossPool;
+    public ObjectPool _bombPool;
+    public ObjectPool _rocketPool;
+    public ObjectPool _bulletPool;
+    public ObjectPool _smallExplosionPool;
+    public ObjectPool _bigExplosionPool;
+
     public GameObject _playerPrefab;
-    public GameObject _bossPrefab;
-    public GameObject _smallExplosionPrefab;
-    public GameObject _bigExplosionPrefab;
 
     public Transform[] _cannonSpawnPoint;
     public Transform[] _truckSpawnPoint;
@@ -41,7 +45,10 @@ public class SpawnManager : MonoBehaviour
             int randInt = UnityEngine.Random.Range(0, _cannonSpawnPoint.Length);
             Vector3 randomSpawnPosition = _cannonSpawnPoint[randInt].position;
             //Instantiate(_cannonPrefab, randomSpawnPosition, Quaternion.identity);
-            PooledObject pooledCannon = ObjectPool.Singleton.GetPooledObject(_cannonPrefab, randomSpawnPosition, Quaternion.identity);
+            PooledObject pooledCannon = _cannonPool.GetPooledObject();
+            pooledCannon.transform.position = randomSpawnPosition;
+            pooledCannon.transform.rotation = Quaternion.identity;
+            pooledCannon.gameObject.SetActive(true);
             _onPlayerShot += pooledCannon.gameObject.GetComponent<CannonEnemyController>().PlayerStartShooting;
         }
     }
@@ -55,7 +62,11 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             int VertexIndex = UnityEngine.Random.Range(0, GameManager.GetInstance()._triangulation.vertices.Length);
-            PooledObject pooledTank = ObjectPool.Singleton.GetPooledObject(_tankPrefab, new Vector3(-100, -100, -100), Quaternion.identity);
+            //PooledObject pooledTank = ObjectPool.Singleton.GetPooledObject(_tankPrefab, new Vector3(-100, -100, -100), Quaternion.identity);
+            PooledObject pooledTank = _tankPool.GetPooledObject();
+            pooledTank.transform.position = new Vector3(-100, -100, -100);
+            pooledTank.transform.rotation = Quaternion.identity;
+            pooledTank.gameObject.SetActive(true);
             GameObject tank = pooledTank.gameObject;
             if (NavMesh.SamplePosition(GameManager.GetInstance()._triangulation.vertices[VertexIndex], out Hit, 2f, -1))
             {
@@ -76,7 +87,11 @@ public class SpawnManager : MonoBehaviour
             int randInt = UnityEngine.Random.Range(0, _truckSpawnPoint.Length);
             Vector3 randomSpawnPosition = _truckSpawnPoint[randInt].position;
             //Instantiate(_truckPrefab, randomSpawnPosition, Quaternion.identity);
-            PooledObject pooledTruck = ObjectPool.Singleton.GetPooledObject(_truckPrefab, randomSpawnPosition, Quaternion.identity);
+            //PooledObject pooledTruck = ObjectPool.Singleton.GetPooledObject(_truckPrefab, randomSpawnPosition, Quaternion.identity);
+            PooledObject pooledTruck = _truckPool.GetPooledObject();
+            pooledTruck.transform.position = randomSpawnPosition;
+            pooledTruck.transform.rotation = Quaternion.identity;
+            pooledTruck.gameObject.SetActive(true);
             _onPlayerShot += pooledTruck.gameObject.GetComponent<TruckEnemyController>().PlayerStartShooting;
             for (int j = 0; j < _navPoint.Length; j++)
             {
@@ -94,7 +109,11 @@ public class SpawnManager : MonoBehaviour
         {
             int VertexIndex = UnityEngine.Random.Range(0, GameManager.GetInstance()._triangulation.vertices.Length);
             //GameObject boss = Instantiate(_bossPrefab, new Vector3(-100, -100, -100), Quaternion.identity);
-            PooledObject pooledBoss = ObjectPool.Singleton.GetPooledObject(_bossPrefab, new Vector3(-100, -100, -100), Quaternion.identity);
+            //PooledObject pooledBoss = ObjectPool.Singleton.GetPooledObject(_bossPrefab, new Vector3(-100, -100, -100), Quaternion.identity);
+            PooledObject pooledBoss = _bossPool.GetPooledObject();
+            pooledBoss.transform.position = new Vector3(-100, -100, -100);
+            pooledBoss.transform.rotation = Quaternion.identity;
+            pooledBoss.gameObject.SetActive(true);
             GameObject boss = pooledBoss.gameObject;
             if (NavMesh.SamplePosition(GameManager.GetInstance()._triangulation.vertices[VertexIndex], out Hit, 2f, -1))
             {

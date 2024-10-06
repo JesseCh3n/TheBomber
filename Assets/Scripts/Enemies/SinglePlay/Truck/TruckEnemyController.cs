@@ -49,7 +49,7 @@ public class TruckEnemyController : MonoBehaviour, IDestroyable
 
     public void Die()
     {
-        ObjectPool.Singleton.ReturnPooledObject(this._pooledTruck, GameManager.GetInstance().GetSpawner()._truckPrefab);
+        gameObject.GetComponent<PooledObject>().Destroy();
         //_truckDie?.Invoke();
     }
     public void PlayerStartShooting()

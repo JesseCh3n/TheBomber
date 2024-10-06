@@ -19548,8 +19548,8 @@ GameObject:
   - component: {fileID: 4420453643976253480}
   - component: {fileID: 4100805350627313164}
   - component: {fileID: 3481790219277824899}
-  - component: {fileID: 6642981004501291385}
   - component: {fileID: 9090357446613089752}
+  - component: {fileID: 4664327526103325106}
   m_Layer: 0
   m_Name: BigExplosion
   m_TagString: Untagged
@@ -24480,18 +24480,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &6642981004501291385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731685717017613809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07573bdbf51c34942ba5fe20571f0927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &9090357446613089752
 AudioSource:
   m_ObjectHideFlags: 0
@@ -24588,6 +24576,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4664327526103325106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731685717017613809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f92dc042ddf4345aeb2e6c2c2fabaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 0
 --- !u!1 &5296144599988859815
 GameObject:
   m_ObjectHideFlags: 0

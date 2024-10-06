@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
     IEnumerator GameOverCoroutine()
     {
         yield return new WaitForSeconds(2);
-        _onDeath();
+        _onDeath?.Invoke();
         _object.Die();
     }
 

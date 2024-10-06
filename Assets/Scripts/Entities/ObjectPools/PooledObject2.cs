@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PooledObject : MonoBehaviour
+public class PooledObject2 : MonoBehaviour
 {
     private float _timer;
     private float _destroyTime = 0;
-    ObjectPool _associatedPool;
     private bool _setToDestroy = false;
 
-    public void SetObjectPool(ObjectPool pool)
+    GameObject _prefab;
+    ObjectPool2 _associatedPool;
+
+    public void SetObjectPool(GameObject prefab, ObjectPool2 pool)
     {
+        _prefab = prefab;
+        _associatedPool = pool;
         _timer = 0;
         _destroyTime = 0;
-        _associatedPool = pool;
-        _setToDestroy = false;
     }
 
     // Update is called once per frame
@@ -35,7 +37,12 @@ public class PooledObject : MonoBehaviour
     {
         if (_associatedPool != null)
         {
-            _associatedPool.RestoreObject(this);
+            if(this.gameObject.activeSelf == true)
+            {
+                Debug.Log("Prefab name is " + _prefab);
+                Debug.Log("pooled object returned");
+                _associatedPool.ReturnpooledObject2(this, _prefab);
+            }
         }
     }
 
@@ -44,5 +51,6 @@ public class PooledObject : MonoBehaviour
         _setToDestroy = true;
         _destroyTime = time;
     }
+
 
 }

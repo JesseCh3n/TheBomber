@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 304739435840824503}
   - component: {fileID: 1333336696212706706}
-  - component: {fileID: 8272479917574998569}
   - component: {fileID: 5169247737454881485}
   - component: {fileID: 8514415519650321955}
+  - component: {fileID: -2344341433289443844}
   m_Layer: 0
   m_Name: TruckPrefab
   m_TagString: Enemy
@@ -57,18 +57,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.6, y: 2.6, z: 7}
   m_Center: {x: 0, y: 1.5, z: -0.5}
---- !u!114 &8272479917574998569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2342115676293882156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07573bdbf51c34942ba5fe20571f0927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5169247737454881485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +72,7 @@ MonoBehaviour:
   _patrolingPoint: []
   _agent: {fileID: 8514415519650321955}
   _playerShot: 0
-  _pooledTruck: {fileID: 8272479917574998569}
+  _pooledTruck: {fileID: 0}
 --- !u!195 &8514415519650321955
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -107,6 +95,18 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-2344341433289443844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2342115676293882156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f92dc042ddf4345aeb2e6c2c2fabaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6436105018569202076
 PrefabInstance:
   m_ObjectHideFlags: 0

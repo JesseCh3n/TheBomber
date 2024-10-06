@@ -40,16 +40,14 @@ public class BossEnemyController : MonoBehaviour, IDestroyable
     void Update()
     {
         _navigation.FreeRoaming();
-        if (_players == null)
-        {
-            FindPlayer();
-        }
+
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
         }
         else if (_timer <= 0)
         {
+            FindPlayer();
             if (_playerTransform != null)
             {
                 _agent.isStopped = true;
@@ -64,13 +62,17 @@ public class BossEnemyController : MonoBehaviour, IDestroyable
     public void Die()
     {
         //_bossDie();
-        ObjectPool.Singleton.ReturnPooledObject(this._pooledBoss, GameManager.GetInstance().GetSpawner()._bossPrefab);
+        gameObject.GetComponent<PooledObject>().Destroy();
     }
 
 
     public void Shoot()
     {
-        PooledObject pooledBullet = ObjectPool.Singleton.GetPooledObject(_bombPrefab, _shootPosition.position, _shootPosition.rotation);
+        //PooledObject pooledBullet = ObjectPool.Singleton.GetPooledObject(_bombPrefab, _shootPosition.position, _shootPosition.rotation);
+        PooledObject pooledBullet = GameManager.GetInstance().GetSpawner()._bulletPool.GetPooledObject();
+        pooledBullet.transform.position = _shootPosition.position;
+        pooledBullet.transform.rotation = _shootPosition.rotation;
+        pooledBullet.gameObject.SetActive(true);
         Rigidbody bullet = pooledBullet.GetComponent<Rigidbody>();
         bullet.AddForce(bullet.transform.forward * _bulletVelocity, ForceMode.VelocityChange);
         pooledBullet.Destroy(5f);

@@ -18,10 +18,16 @@ public class BulletShootStrategy : IshootStrategy
     {
         if (_playerShoot.GetBulletNum() > 0)
         {
-            _pooledBullet = ObjectPool.Singleton.GetPooledObject(_playerShoot._bulletPrefab, _shootPoint.position, _shootPoint.rotation);
+            //_pooledBullet = ObjectPool.Singleton.GetPooledObject(_playerShoot._bulletPrefab, _shootPoint.position, _shootPoint.rotation);
+            _pooledBullet = GameManager.GetInstance().GetSpawner()._bombPool.GetPooledObject();
+            _pooledBullet.transform.position = _shootPoint.position;
+            _pooledBullet.transform.rotation = _shootPoint.rotation;
+            _pooledBullet.gameObject.SetActive(true);
             Rigidbody bullet = _pooledBullet.GetComponent<Rigidbody>();
             //bullet.velocity = _shootPoint.forward * (_playerShoot.GetShootVelocity() + _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity);
-            bullet.AddForce(bullet.transform.forward * (Mathf.Max(0, _playerShoot.GetShootVelocity()) + _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity), ForceMode.VelocityChange);
+            float velocity = _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity;
+            velocity += Mathf.Max(0, _playerShoot.GetShootVelocity());
+            bullet.AddForce(bullet.transform.forward * velocity, ForceMode.VelocityChange);
             _playerShoot.DeductBulletNum();
             _pooledBullet.Destroy(5f);
         }
