@@ -151,7 +151,7 @@ MonoBehaviour:
   _shootPosition: {fileID: 709957724177262728}
   _bombPrefab: {fileID: 7780733992289458859, guid: 5c421bf8a4e93df408e460d9d647ea15,
     type: 3}
-  _bulletVelocity: 100
+  _bulletVelocity: 150
   _shootingRate: 3
   _pooledBoss: {fileID: 0}
 --- !u!114 &-4102342708343922988

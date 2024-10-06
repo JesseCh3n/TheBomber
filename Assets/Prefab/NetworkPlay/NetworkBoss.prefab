@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2738648539
+  GlobalObjectIdHash: 1608378500
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   _shootPosition: {fileID: 709957724177262728}
   _bombPrefab: {fileID: 7780733992289458859, guid: ddbe73f181aa28044ba210304a568d4b,
     type: 3}
-  _bulletVelocity: 100
+  _bulletVelocity: 150
   _shootingRate: 3
 --- !u!114 &8754836303590851674
 MonoBehaviour:

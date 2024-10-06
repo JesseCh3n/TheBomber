@@ -19,6 +19,7 @@ TagManager:
   - txtGameWinner
   - restartButton
   - EndingUI
+  - Dead
   layers:
   - Default
   - TransparentFX

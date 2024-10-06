@@ -17,6 +17,7 @@ public class PlayerShoot : MonoBehaviour
     private IshootStrategy _currentShootStrategy;
     private CommandInvoker _shootCommand;
     private float _playerVelocity;
+    private bool _checkEnabled = false;
 
     //UnityEvent<int> _onSecondChanceUsed;
     //UnityEvent _onShootingStart;
@@ -35,53 +36,54 @@ public class PlayerShoot : MonoBehaviour
         _onBulletShot += GameManager.GetInstance().GetUIManager().UpdateBulletNum;
         _onRocketShot += GameManager.GetInstance().GetUIManager().UpdateRocketNum;
         _onAmmoRunout += GameManager.GetInstance().GetCurrentLevel().GameOver;
+        _onAmmoRunout += PlayerController.GetInstance().Die;
         _onShotFired += GameManager.GetInstance().GetSpawner().PlayerShot;
         //InitializePool();
         _onBulletShot(_bulletNum);
         _onRocketShot(_rocketNum);
         _onSecondChanceUsed(_undoChance);
+        _checkEnabled = true;
     }
 
-    /*
-    private void InitializePool()
-    {
-        ObjectPool.Singleton.AddPrefab(_bulletPrefab, 5);
-        ObjectPool.Singleton.AddPrefab(_rocketPrefab, 5);
-    }
-    */
 
     // Update is called once per frame
     void Update()
     {
-        CheckAmmo();
-        if (_currentShootStrategy == null)
+        if (_checkEnabled)
         {
-            _currentShootStrategy = new BulletShootStrategy(this);
-        } else if (PlayerInput.GetInstance()._weapon1Pressed)//Select Bullet
-        {
-            _currentShootStrategy = new BulletShootStrategy(this);
-        } else if (PlayerInput.GetInstance()._weapon2Pressed)//Select Rocket
-        {
-            _currentShootStrategy = new RocketShootStrategy(this);
-        }
-
-        if (PlayerInput.GetInstance()._primaryShootPressed && _currentShootStrategy != null)
-        {
-            // require server RPC 
-            // get clientID
-            _onShotFired();
-            ICommand storedCommand = new ShootCommand(_currentShootStrategy);
-            _shootCommand.AddCommand(storedCommand);
-        } else if (PlayerInput.GetInstance()._undoPressed && _undoChance > 0)
-        {
-            if (_undoChance == 0)
+            CheckAmmo();
+            if (_currentShootStrategy == null)
             {
-                return;
+                _currentShootStrategy = new BulletShootStrategy(this);
             }
-            else
+            else if (PlayerInput.GetInstance()._weapon1Pressed)//Select Bullet
             {
-                _onSecondChanceUsed(GetUndoChance());
-                _shootCommand.UndoCommand();
+                _currentShootStrategy = new BulletShootStrategy(this);
+            }
+            else if (PlayerInput.GetInstance()._weapon2Pressed)//Select Rocket
+            {
+                _currentShootStrategy = new RocketShootStrategy(this);
+            }
+
+            if (PlayerInput.GetInstance()._primaryShootPressed && _currentShootStrategy != null)
+            {
+                // require server RPC 
+                // get clientID
+                _onShotFired();
+                ICommand storedCommand = new ShootCommand(_currentShootStrategy);
+                _shootCommand.AddCommand(storedCommand);
+            }
+            else if (PlayerInput.GetInstance()._undoPressed && _undoChance > 0)
+            {
+                if (_undoChance == 0)
+                {
+                    return;
+                }
+                else
+                {
+                    _onSecondChanceUsed(GetUndoChance());
+                    _shootCommand.UndoCommand();
+                }
             }
         }
     }
@@ -104,11 +106,9 @@ public class PlayerShoot : MonoBehaviour
     {
         if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
         {
+            _checkEnabled = false;
             StartCoroutine(GameOverCoroutine());
-        }
-        else
-        {
-            return;
+            gameObject.GetComponentInParent<PlayerController>().GetPlayerHealth()._isDead = true;
         }
     }
 

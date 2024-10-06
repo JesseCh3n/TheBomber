@@ -269,15 +269,12 @@ public class NetworkGameManager : NetworkBehaviour
     public void UpdatePlayerNum()
     {
         Debug.Log("Player num update executed");
-        if(_totalPlayers.Value > 0)
-        {
-            _totalPlayers.Value--;
-        }
-        else if (_totalPlayers.Value <= 0)
+        _totalPlayers.Value--;
+        if (_totalPlayers.Value <= 0)
         {
             GetCurrentLevel()._onAllPlayersDie?.Invoke();
         }
-    }
+     }
 
     [ClientRpc]
     public void UpdateGameOverUIClientRpc()

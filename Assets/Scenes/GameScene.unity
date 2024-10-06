@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.26042536, g: 0.30677512, b: 0.28280696, a: 1}
+  m_IndirectSpecularColor: {r: 0.291428, g: 0.3371615, b: 0.44650385, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8982,7 +8982,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 882403116}
         m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: Restart
+        m_MethodName: SinglePlayRestart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

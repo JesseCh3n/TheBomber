@@ -26,10 +26,11 @@ public class CannonEnemyAttackState : CannonEnemyState
 
     public void FindPlayer()
     {
+        _playerTransform = null;
         _enemy._players = GameObject.FindGameObjectsWithTag("Player");
-        //Debug.Log(_enemy._players);
-        //Debug.Log(_enemy._players.Length);
+        if (_enemy._players.Length == 0) return;
         int randIndex = Random.Range(0, _enemy._players.Length);
+        Debug.Log("The player index enemy found is " + randIndex);
         _playerTransform = _enemy._players[randIndex].transform;
     }
 

@@ -90,7 +90,9 @@ public class NetworkBossEnemyController : NetworkBehaviour, IDestroyable
 
     public void FindPlayer()
     {
+        _playerTransform = null;
         _players = GameObject.FindGameObjectsWithTag("Player");
+        if (_players.Length == 0) return;
         int randIndex = UnityEngine.Random.Range(0, _players.Length);
         _playerTransform = _players[randIndex].transform;
     }

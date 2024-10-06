@@ -31,4 +31,9 @@ public class SceneChanger : MonoBehaviour
         }
         SceneManager.LoadScene("StartScene");
     }
+
+    public void SinglePlayRestart()
+    {
+        SceneManager.LoadScene("StartScene");
+    }
 }

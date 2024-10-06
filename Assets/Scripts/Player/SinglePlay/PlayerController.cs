@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour, IDestroyable
 
     public void Die()
     {
+        gameObject.tag = "Dead";
         //this.gameObject.SetActive(false);
         PlayerInput.GetInstance()._isDiabled = true;
     }

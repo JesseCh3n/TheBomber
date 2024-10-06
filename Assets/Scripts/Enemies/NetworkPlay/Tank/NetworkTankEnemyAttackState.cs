@@ -28,8 +28,11 @@ public class NetworkTankEnemyAttackState : NetworkTankEnemyState
 
     public void FindPlayer()
     {
+        _playerTransform = null;
         _enemy._players = GameObject.FindGameObjectsWithTag("Player");
+        if (_enemy._players.Length == 0) return;
         int randIndex = Random.Range(0, _enemy._players.Length);
+        Debug.Log("The player index enemy found is " + randIndex);
         _playerTransform = _enemy._players[randIndex].transform;
     }
 

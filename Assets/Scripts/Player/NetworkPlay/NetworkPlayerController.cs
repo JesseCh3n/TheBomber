@@ -76,6 +76,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
     {
         if (IsOwner)
         {
+            gameObject.tag = "Dead";
             ReducePlayerNumServerRpc();
             _playerInput._isDiabled = true;
             OnDie();

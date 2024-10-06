@@ -59,7 +59,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
             _onBulletShot(_bulletNum);
             _onRocketShot(_rocketNum);
             _onSecondChanceUsed(_undoChance);
-            _onAmmoRunout += gameObject.GetComponentInParent<NetworkPlayerController>().Die;
+            _onAmmoRunout += gameObject.GetComponent<NetworkPlayerController>().Die;
 
             if (_undoChance != 0)
             {
@@ -135,8 +135,8 @@ public class NetworkPlayerShoot : NetworkBehaviour
             if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
             {
                 _checkEnabled = false;
+                gameObject.GetComponent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
                 StartCoroutine(GameOverCoroutine());
-                gameObject.GetComponentInParent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
             }
         }
     }

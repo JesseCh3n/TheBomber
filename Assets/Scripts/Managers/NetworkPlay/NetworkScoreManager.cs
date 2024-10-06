@@ -33,6 +33,7 @@ public class NetworkScoreManager : NetworkBehaviour
         if (IsServer)
         {
             _playerScoresDict.Add(playerObject.OwnerClientId, 0);
+            Debug.Log("Score board owner id is " + playerObject.OwnerClientId);
             GetScoreClientRpc();
             SetHighScore();
         }
@@ -111,7 +112,14 @@ public class NetworkScoreManager : NetworkBehaviour
     public void GetHighScore()
     {
         ScoreInfo temp = new ScoreInfo();
-        temp._id = _playerScoresDict.FirstOrDefault(x => x.Value == _highScore).Key;
+        foreach (KeyValuePair<ulong, int> entry in _playerScoresDict)
+        {
+            if (entry.Value == _highScore)
+            {
+                temp._id = entry.Key;
+            }
+        }
+        Debug.Log("temp id is " + temp._id);
         temp._name = ConnectionNotificationManager.Singleton._playerNameDict[temp._id];
         temp._score = _highScore;
         ShowGameEndUIClientRPC(JsonUtility.ToJson(temp));

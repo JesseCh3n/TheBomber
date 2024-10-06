@@ -30,11 +30,11 @@ public class NetworkCannonEnemyAttackState : NetworkCannonEnemyState
     {
         if (_enemy.CheckServer())
         {
+            _playerTransform = null;
             _enemy._players = GameObject.FindGameObjectsWithTag("Player");
-            Debug.Log("Found Players " + _enemy._players);
-            Debug.Log("This many players " + _enemy._players.Length);
+            if (_enemy._players.Length == 0) return;
             int randIndex = Random.Range(0, _enemy._players.Length);
-            Debug.Log("Player index I found " + randIndex);
+            Debug.Log("The player index enemy found is " + randIndex);
             _playerTransform = _enemy._players[randIndex].transform;
         }
     }

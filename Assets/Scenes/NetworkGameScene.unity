@@ -1938,6 +1938,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 367059683}
   m_CullTransparentMesh: 1
+--- !u!1 &371691132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 371691133}
+  - component: {fileID: 371691135}
+  - component: {fileID: 371691134}
+  m_Layer: 0
+  m_Name: Level3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &371691133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371691132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 483838156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &371691134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371691132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 57381548
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+--- !u!114 &371691135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371691132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7edae82a4444f845a8b7f7e9cd254d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lvl: {fileID: 11400000, guid: 475ccbeaaee7b694db04dac76f1d3ac9, type: 2}
+  _isFinalLevel: 1
+  _isFirstLevel: 0
+  _onLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLevelEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  _enemyKilled:
+    m_InternalValue: 0
+  _totalEnemy:
+    m_InternalValue: 0
 --- !u!1 &372816479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvl: {fileID: 11400000, guid: 36f0d68f09d13654290d0bdaf9a0e5b0, type: 2}
-  _isFinalLevel: 1
+  _isFinalLevel: 0
   _isFirstLevel: 0
   _onLevelStart:
     m_PersistentCalls:
@@ -3476,6 +3554,7 @@ Transform:
   m_Children:
   - {fileID: 258532468}
   - {fileID: 416071543}
+  - {fileID: 371691133}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &485540653
@@ -6249,6 +6328,7 @@ MonoBehaviour:
   _levels:
   - {fileID: 258532470}
   - {fileID: 416071544}
+  - {fileID: 371691135}
   _scoreManager: {fileID: 1101620195}
   _spawner: {fileID: 1985921267}
   _sceneManager: {fileID: 882403116}
