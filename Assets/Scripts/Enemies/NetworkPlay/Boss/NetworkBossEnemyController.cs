@@ -17,7 +17,7 @@ public class NetworkBossEnemyController : NetworkBehaviour, IDestroyable
 
     private Transform _playerTransform;
     private float _timer;
-
+    private bool _playerToBeFound = false;
 
     //public UnityEvent _tankDie;
     //public Action _bossDie;
@@ -43,16 +43,22 @@ public class NetworkBossEnemyController : NetworkBehaviour, IDestroyable
             if (_timer > 0)
             {
                 _timer -= Time.deltaTime;
+                _playerToBeFound = true;
             }
             else if (_timer <= 0)
             {
-                FindPlayer();
+                if(_playerToBeFound == true)
+                {
+                    FindPlayer();
+                }
                 if (_playerTransform != null)
                 {
+                    _playerToBeFound = false;
                     _agent.isStopped = true;
                     Rotate(_playerTransform);
                     Shoot();
                     _agent.isStopped = false;
+                    _playerTransform = null;
                 }
                 _timer = _shootingRate;
             }
@@ -88,7 +94,6 @@ public class NetworkBossEnemyController : NetworkBehaviour, IDestroyable
 
     public void FindPlayer()
     {
-        _playerTransform = null;
         _players = GameObject.FindGameObjectsWithTag("Player");
         if (_players.Length == 0) return;
         int randIndex = UnityEngine.Random.Range(0, _players.Length);

@@ -2639,7 +2639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lvl: {fileID: 11400000, guid: 36f0d68f09d13654290d0bdaf9a0e5b0, type: 2}
-  _isFinalLevel: 0
+  _isFinalLevel: 1
   _isFirstLevel: 0
   _onLevelStart:
     m_PersistentCalls:

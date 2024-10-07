@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Collections;
 
 public class NetworkPlayerController : NetworkBehaviour, IDestroyable
 {
@@ -21,6 +22,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
     void Start()
     {
         _networkPlayer = gameObject.GetComponentInParent<NetworkObject>();
+        _playerInfo = _networkPlayer.GetComponentInChildren<NetworkPlayerInfo>();
         _playerInput = gameObject.GetComponent<NetworkPlayerInput>();
         _playerHealth = gameObject.GetComponent<Health>();
         _playerMovement = gameObject.GetComponent<NetworkPlayerMovement>();
@@ -67,7 +69,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
 
                 NetworkGameManager.GetInstance().GetScoreManager()._scoreUpdated += FetchPlayerScoreServerRpc;
                 NetworkGameManager.GetInstance().GetScoreManager()._highScoreUpdated += FetchHighScoreServerRpc;
-                AddPlayerScoreServerRpc();
+                AddPlayerScoreServerRpc(_playerInfo._playerName.Value);
             }
         }
     }
@@ -80,7 +82,7 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
             gameObject.tag = "Dead";
             _playerInput._isDiabled = true;
             ReducePlayerNumServerRpc();
-            OnDie();
+            StartCoroutine(OnDie());
         }
     }
 
@@ -135,9 +137,10 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
     }
 
     [ServerRpc]
-    public void AddPlayerScoreServerRpc()
+    public void AddPlayerScoreServerRpc(FixedString64Bytes name)
     {
-        NetworkGameManager.GetInstance().GetScoreManager().PopulateScore(gameObject.GetComponentInParent<NetworkObject>());
+        string value = name.ToString();
+        NetworkGameManager.GetInstance().GetScoreManager().PopulateScore(gameObject.GetComponentInParent<NetworkObject>(), value);
     }
 
     [ServerRpc]
@@ -152,8 +155,9 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
         NetworkGameManager.GetInstance().GetScoreManager().FetchHighScore();
     }
 
-    public void OnDie()
+    private IEnumerator OnDie()
     {
+        yield return new WaitForSeconds(1.5f);
         NetworkGameManager.GetInstance()._bombUpdated -= _playerShoot.SetBulletNum;
         NetworkGameManager.GetInstance()._rocketUpdated -= _playerShoot.SetRocketNum;
         NetworkGameManager.GetInstance()._undoUpdated -= _playerShoot.SetUndoChance;

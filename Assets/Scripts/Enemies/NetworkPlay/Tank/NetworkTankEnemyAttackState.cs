@@ -7,6 +7,7 @@ public class NetworkTankEnemyAttackState : NetworkTankEnemyState
 {
     private float _timer;
     private Transform _playerTransform;
+    private bool _playerToBeFound = false;
 
     public NetworkTankEnemyAttackState(NetworkTankEnemyController enemy) : base(enemy) { }
     public void Shoot()
@@ -28,7 +29,6 @@ public class NetworkTankEnemyAttackState : NetworkTankEnemyState
 
     public void FindPlayer()
     {
-        _playerTransform = null;
         _enemy._players = GameObject.FindGameObjectsWithTag("Player");
         if (_enemy._players.Length == 0) return;
         int randIndex = Random.Range(0, _enemy._players.Length);
@@ -54,14 +54,20 @@ public class NetworkTankEnemyAttackState : NetworkTankEnemyState
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
+            _playerToBeFound = true;
         }
         else if (_timer <= 0)
         {
-            FindPlayer();
+            if (_playerToBeFound == true)
+            {
+                FindPlayer();
+            }
             if (_playerTransform != null)
             {
+                _playerToBeFound = false;
                 Rotate(_playerTransform);
                 Shoot();
+                _playerTransform = null;
             }
             _timer = _enemy._shootingRate;
         }

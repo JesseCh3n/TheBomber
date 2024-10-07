@@ -6,6 +6,7 @@ public class CannonEnemyAttackState : CannonEnemyState
 {
     private float _timer;
     private Transform _playerTransform;
+    private bool _playerToBeFound = false;
 
     public CannonEnemyAttackState(CannonEnemyController enemy) : base(enemy) { }
     public void Shoot()
@@ -27,7 +28,6 @@ public class CannonEnemyAttackState : CannonEnemyState
 
     public void FindPlayer()
     {
-        _playerTransform = null;
         _enemy._players = GameObject.FindGameObjectsWithTag("Player");
         if (_enemy._players.Length == 0) return;
         int randIndex = Random.Range(0, _enemy._players.Length);
@@ -52,14 +52,20 @@ public class CannonEnemyAttackState : CannonEnemyState
         if (_timer > 0)
         {
             _timer -= Time.deltaTime;
+            _playerToBeFound = true;
         }
         else if (_timer <= 0)
         {
-            FindPlayer();
+            if (_playerToBeFound == true)
+            {
+                FindPlayer();
+            }
             if (_playerTransform != null)
             {
+                _playerToBeFound = false;
                 Rotate(_playerTransform);
                 Shoot();
+                _playerTransform = null;
             }
             _timer = _enemy._shootingRate;
         }

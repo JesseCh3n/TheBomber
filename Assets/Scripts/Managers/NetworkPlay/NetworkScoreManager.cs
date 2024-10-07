@@ -11,6 +11,7 @@ public class NetworkScoreManager : NetworkBehaviour
     private int _highScore;
 
     Dictionary<ulong, int> _playerScoresDict = new Dictionary<ulong, int>();
+    Dictionary<ulong, string> _playerNamesDict = new Dictionary<ulong, string>();
 
     public Action _scoreUpdated;
     public Action _highScoreUpdated;
@@ -28,11 +29,12 @@ public class NetworkScoreManager : NetworkBehaviour
         _highScore = 0;
     }
 
-    public void PopulateScore(NetworkObject playerObject)
+    public void PopulateScore(NetworkObject playerObject, string playerName)
     {
         if (IsServer)
         {
             _playerScoresDict.Add(playerObject.OwnerClientId, 0);
+            _playerNamesDict.Add(playerObject.OwnerClientId, playerName);
             Debug.Log("Score board owner id is " + playerObject.OwnerClientId);
             GetScoreClientRpc();
             SetHighScore();
@@ -120,7 +122,7 @@ public class NetworkScoreManager : NetworkBehaviour
             }
         }
         Debug.Log("temp id is " + temp._id);
-        temp._name = ConnectionNotificationManager.Singleton._playerNameDict[temp._id];
+        temp._name = _playerNamesDict[temp._id];
         temp._score = _highScore;
         ShowGameEndUIClientRPC(JsonUtility.ToJson(temp));
     }
