@@ -17,8 +17,8 @@ MonoBehaviour:
   _tankNum: 3
   _truckNum: 3
   _bossNum: 0
-  _totalBomb: 16
-  _totalRocket: 8
+  _totalBomb: 10
+  _totalRocket: 6
   _secondChance: 4
   _playerSpeed: 8
   _playerHealth: 300

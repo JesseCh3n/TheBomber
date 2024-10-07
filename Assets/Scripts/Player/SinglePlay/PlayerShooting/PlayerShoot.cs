@@ -35,10 +35,8 @@ public class PlayerShoot : MonoBehaviour
         _onSecondChanceUsed += GameManager.GetInstance().GetUIManager().UpdateSecondChance;
         _onBulletShot += GameManager.GetInstance().GetUIManager().UpdateBulletNum;
         _onRocketShot += GameManager.GetInstance().GetUIManager().UpdateRocketNum;
-        _onAmmoRunout += GameManager.GetInstance().GetCurrentLevel().GameOver;
         _onAmmoRunout += PlayerController.GetInstance().Die;
         _onShotFired += GameManager.GetInstance().GetSpawner().PlayerShot;
-        //InitializePool();
         _onBulletShot(_bulletNum);
         _onRocketShot(_rocketNum);
         _onSecondChanceUsed(_undoChance);
@@ -67,8 +65,6 @@ public class PlayerShoot : MonoBehaviour
 
             if (PlayerInput.GetInstance()._primaryShootPressed && _currentShootStrategy != null)
             {
-                // require server RPC 
-                // get clientID
                 _onShotFired();
                 ICommand storedCommand = new ShootCommand(_currentShootStrategy);
                 _shootCommand.AddCommand(storedCommand);
@@ -107,15 +103,14 @@ public class PlayerShoot : MonoBehaviour
         if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
         {
             _checkEnabled = false;
-            StartCoroutine(GameOverCoroutine());
-            gameObject.GetComponentInParent<PlayerController>().GetPlayerHealth()._isDead = true;
+            _onAmmoRunout?.Invoke();
         }
     }
 
     public void SetBulletNum(int num)
     {
         _bulletNum = num;
-        _onBulletShot(num);
+        _onBulletShot?.Invoke(num);
     }
     public int GetBulletNum()
     {
@@ -124,18 +119,18 @@ public class PlayerShoot : MonoBehaviour
     public void DeductBulletNum()
     {
         _bulletNum--;
-        _onBulletShot(_bulletNum);
+        _onBulletShot?.Invoke(_bulletNum);
     }
     public void IncreaseBulletNum()
     {
         _bulletNum++;
-        _onBulletShot(_bulletNum);
+        _onBulletShot?.Invoke(_bulletNum);
     }
 
     public void SetRocektNum(int num)
     {
         _rocketNum = num;
-        _onRocketShot(_rocketNum);
+        _onRocketShot?.Invoke(_rocketNum);
     }
     public int GetRocketNum()
     {
@@ -144,18 +139,18 @@ public class PlayerShoot : MonoBehaviour
     public void DeductRocketNum()
     {
         _rocketNum--;
-        _onRocketShot(_rocketNum);
+        _onRocketShot?.Invoke(_rocketNum);
     }
     public void IncreaseRocketNum()
     {
         _rocketNum++;
-        _onRocketShot(_rocketNum);
+        _onRocketShot?.Invoke(_rocketNum);
     }
 
     public void SetUndoChance(int num)
     {
         _undoChance = num;
-        _onSecondChanceUsed(_undoChance);
+        _onSecondChanceUsed?.Invoke(_undoChance);
     }
     public int GetUndoChance()
     {
@@ -164,7 +159,7 @@ public class PlayerShoot : MonoBehaviour
     public void DeductUndoChance()
     {
         _undoChance --;
-        _onSecondChanceUsed(_undoChance);
+        _onSecondChanceUsed?.Invoke(_undoChance);
     }
 
     private void OnDisable()
@@ -172,12 +167,7 @@ public class PlayerShoot : MonoBehaviour
         _onSecondChanceUsed -= GameManager.GetInstance().GetUIManager().UpdateSecondChance;
         _onBulletShot -= GameManager.GetInstance().GetUIManager().UpdateBulletNum;
         _onRocketShot -= GameManager.GetInstance().GetUIManager().UpdateRocketNum;
-        StopCoroutine(GameOverCoroutine());
+        //StopCoroutine(GameOverCoroutine());
     }
 
-    IEnumerator GameOverCoroutine()
-    {
-        yield return new WaitForSeconds(2);
-        _onAmmoRunout();
-    }
 }

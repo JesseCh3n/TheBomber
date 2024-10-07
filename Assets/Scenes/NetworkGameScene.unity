@@ -1655,30 +1655,30 @@ MonoBehaviour:
   PooledPrefabsList:
   - Prefab: {fileID: 5269679658440354043, guid: d9a26b24972b1f94d9a421fcc1404404,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 10
   - Prefab: {fileID: 7148849394894954900, guid: 261cdc5175540af438b9a8c18f6c8d24,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 10
   - Prefab: {fileID: 2342115676293882156, guid: cf145aaa6e3f3514db153bfe0a7cb63c,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 10
   - Prefab: {fileID: 1805541594470370729, guid: e4f097ff5826d0c46adfe639504740b9,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 5
   - Prefab: {fileID: 6100010922999234335, guid: f12037f0330b83c439c873877bee9a6a,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 5
   - Prefab: {fileID: 7780733992289458859, guid: ddbe73f181aa28044ba210304a568d4b,
       type: 3}
     PrewarmCount: 20
   - Prefab: {fileID: 578530271300847561, guid: 835537c639961ca488f373181ef0b3f0, type: 3}
-    PrewarmCount: 5
+    PrewarmCount: 2
   - Prefab: {fileID: 4731685717017613809, guid: d571f985f18093546a47573651bb8da8,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 5
   - Prefab: {fileID: 8397090466245594533, guid: 183a3f1481eff51418f03ba57866fb57,
       type: 3}
-    PrewarmCount: 20
+    PrewarmCount: 5
 --- !u!1 &314136308
 GameObject:
   m_ObjectHideFlags: 0

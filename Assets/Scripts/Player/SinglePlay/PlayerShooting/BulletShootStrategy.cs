@@ -25,9 +25,7 @@ public class BulletShootStrategy : IshootStrategy
             _pooledBullet.gameObject.SetActive(true);
             Rigidbody bullet = _pooledBullet.GetComponent<Rigidbody>();
             //bullet.velocity = _shootPoint.forward * (_playerShoot.GetShootVelocity() + _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity);
-            float velocity = _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity;
-            velocity += Mathf.Max(0, _playerShoot.GetShootVelocity());
-            bullet.AddForce(bullet.transform.forward * velocity, ForceMode.VelocityChange);
+            bullet.AddForce(bullet.transform.forward * (Mathf.Max(0, _playerShoot.GetShootVelocity()) + _pooledBullet.GetComponent<ProjectileInteract>()._shootVelocity), ForceMode.VelocityChange);
             _playerShoot.DeductBulletNum();
             _pooledBullet.Destroy(5f);
         }

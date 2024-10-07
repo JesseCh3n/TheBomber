@@ -135,8 +135,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
             if (GetBulletNum() == 0 && GetRocketNum() == 0 && GetUndoChance() == 0)
             {
                 _checkEnabled = false;
-                gameObject.GetComponent<NetworkPlayerController>().GetPlayerHealth()._isDead = true;
-                StartCoroutine(GameOverCoroutine());
+                _onAmmoRunout?.Invoke();
             }
         }
     }
@@ -146,7 +145,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _bulletNum = num;
         if (IsOwner)
         {
-            _onBulletShot(num);
+            _onBulletShot?.Invoke(num);
         }
     }
     public int GetBulletNum()
@@ -158,7 +157,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _bulletNum--;
         if (IsOwner)
         {
-            _onBulletShot(_bulletNum);
+            _onBulletShot?.Invoke(_bulletNum);
         }
     }
     public void IncreaseBulletNum()
@@ -166,7 +165,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _bulletNum++;
         if (IsOwner)
         {
-            _onBulletShot(_bulletNum);
+            _onBulletShot?.Invoke(_bulletNum);
         }
     }
 
@@ -175,7 +174,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _rocketNum = num;
         if (IsOwner)
         {
-            _onRocketShot(_rocketNum);
+            _onRocketShot?.Invoke(_rocketNum);
         }
     }
 
@@ -188,7 +187,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _rocketNum--;
         if (IsOwner)
         {
-            _onRocketShot(_rocketNum);
+            _onRocketShot?.Invoke(_rocketNum);
         }
     }
 
@@ -197,7 +196,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _rocketNum++;
         if (IsOwner)
         {
-            _onRocketShot(_rocketNum);
+            _onRocketShot?.Invoke(_rocketNum);
         }
     }
 
@@ -206,7 +205,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _undoChance = num;
         if (IsOwner)
         {
-            _onSecondChanceUsed(_undoChance);
+            _onSecondChanceUsed?.Invoke(_undoChance);
         }
     }
 
@@ -219,7 +218,7 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _undoChance--;
         if (IsOwner)
         {
-            _onSecondChanceUsed(_undoChance);
+            _onSecondChanceUsed?.Invoke(_undoChance);
         }
     }
 
@@ -228,12 +227,6 @@ public class NetworkPlayerShoot : NetworkBehaviour
         _onSecondChanceUsed -= _uiManager.UpdateSecondChance;
         _onBulletShot -= _uiManager.UpdateBulletNum;
         _onRocketShot -= _uiManager.UpdateRocketNum;
-    }
-
-    IEnumerator GameOverCoroutine()
-    {
-        yield return new WaitForSeconds(2);
-        _onAmmoRunout();
     }
 
     [ServerRpc]

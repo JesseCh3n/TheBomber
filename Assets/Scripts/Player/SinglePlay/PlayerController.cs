@@ -47,9 +47,10 @@ public class PlayerController : MonoBehaviour, IDestroyable
 
     public void Die()
     {
+        _playerHealth._isDead = true;
         gameObject.tag = "Dead";
-        //this.gameObject.SetActive(false);
         PlayerInput.GetInstance()._isDiabled = true;
+        StartCoroutine(GameOverCoroutine());
     }
 
     public Health GetPlayerHealth()
@@ -75,5 +76,12 @@ public class PlayerController : MonoBehaviour, IDestroyable
     {
         _playerHealth._onHealthUpdated -= GameManager.GetInstance().GetUIManager().UpdateHealth;
         _playerHealth._onDeath -= GameManager.GetInstance().GetCurrentLevel().GameOver;
+        StopCoroutine(GameOverCoroutine());
+    }
+
+    IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        _playerHealth._onDeath?.Invoke();
     }
 }

@@ -25,31 +25,22 @@ public class Health : MonoBehaviour
         _isDead = false;
         if (_onHealthUpdated != null)
         {
-            _onHealthUpdated(_maxHealth);
+            _onHealthUpdated?.Invoke(_maxHealth);
         }
     }
 
     public void DeductHealth(float value)
     {
         if (_isDead) return;
-        //Debug.Log(value);
-        //Debug.Log(_health);
         _health -= value;
 
         if (_health <= 0)
         {
             _isDead = true;
-            StartCoroutine(GameOverCoroutine());
+            _object.Die();
             _health = 0;
         }
-        _onHealthUpdated(_health);
-    }
-
-    IEnumerator GameOverCoroutine()
-    {
-        yield return new WaitForSeconds(2);
-        _onDeath?.Invoke();
-        _object.Die();
+        _onHealthUpdated?.Invoke(_health);
     }
 
     public void OnReset()
@@ -58,7 +49,7 @@ public class Health : MonoBehaviour
         _health = _maxHealth;
         if(_onHealthUpdated != null)
         {
-            _onHealthUpdated(_maxHealth);
+            _onHealthUpdated?.Invoke(_maxHealth);
         }
     }
 }

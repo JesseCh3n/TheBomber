@@ -17,9 +17,6 @@ public class CannonEnemyAttackState : CannonEnemyState
         pooledBullet.gameObject.SetActive(true);
         Rigidbody bullet = pooledBullet.GetComponent<Rigidbody>();
         bullet.AddForce(bullet.transform.forward * _enemy._bulletVelocity, ForceMode.VelocityChange);
-        //ProjectileMotion bullet = pooledBullet.GetComponent<ProjectileMotion>();
-        //bullet.SetSpeed(_enemy._bulletVelocity);
-        //bullet.SetTarget(_playerTransform);
         pooledBullet.Destroy(5f);
     }
 

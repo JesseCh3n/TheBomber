@@ -108,10 +108,18 @@ public class NetworkObjectPool : NetworkBehaviour
         void ActionOnGet(NetworkObject networkObject)
         {
             networkObject.gameObject.SetActive(true);
+            if (networkObject.GetComponent<Rigidbody>() != null)
+            {
+                networkObject.GetComponent<Rigidbody>().isKinematic = false;
+            }
         }
 
         void ActionOnRelease(NetworkObject networkObject)
         {
+            if (networkObject.GetComponent<Rigidbody>() != null)
+            {
+                networkObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
             networkObject.gameObject.SetActive(false);
         }
 

@@ -7095,7 +7095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d87c9d766e3792479da98ec6c356a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSize: 10
+  _startSize: 20
   _objectPool: []
   _usedPool: []
   _objectToPool: {fileID: -7483837460169023776, guid: 5c421bf8a4e93df408e460d9d647ea15,
@@ -7144,7 +7144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d87c9d766e3792479da98ec6c356a20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startSize: 5
+  _startSize: 2
   _objectPool: []
   _usedPool: []
   _objectToPool: {fileID: -1628639464709946282, guid: 60f1cf61843ce2f478a1866bae55976d,

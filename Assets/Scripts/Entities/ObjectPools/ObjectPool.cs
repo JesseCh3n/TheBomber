@@ -45,7 +45,10 @@ public class ObjectPool : MonoBehaviour
             _tempObject = GetPooledObject();
         }
         _tempObject.gameObject.SetActive(true);
-
+        if (_tempObject.GetComponent<Rigidbody>() != null)
+        {
+            _tempObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
 
         return _tempObject;
 
@@ -64,12 +67,11 @@ public class ObjectPool : MonoBehaviour
 
     public void RestoreObject(PooledObject obj)
     {
+        if (obj.GetComponent<Rigidbody>() != null)
+        {
+            obj.GetComponent<Rigidbody>().isKinematic = true;
+        }
         obj.gameObject.SetActive(false);
         _usedPool.Remove(obj);
-        Destroy(obj.gameObject);
-        _tempObject = Instantiate(_objectToPool, transform).GetComponent<PooledObject>();
-        _tempObject.gameObject.SetActive(false);
-        _tempObject.SetObjectPool(this);
-        _objectPool.Add(_tempObject);
     }
 }
