@@ -80,7 +80,8 @@ public class NetworkPlayerController : NetworkBehaviour, IDestroyable
         {
             _playerHealth._isDead = true;
             gameObject.tag = "Dead";
-            _playerInput._isDiabled = true;
+            _playerShoot._isReady = false;
+            //_playerInput._isDiabled = true;
             ReducePlayerNumServerRpc();
             StartCoroutine(OnDie());
         }

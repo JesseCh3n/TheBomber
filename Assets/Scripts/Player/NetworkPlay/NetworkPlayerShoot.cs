@@ -14,8 +14,8 @@ public class NetworkPlayerShoot : NetworkBehaviour
     public int _rocketNum = 0;
     public int _undoChance = 0;
     public ulong _playerID;
+    public bool _isReady = false;
 
-    private bool _isReady = false;
     private bool _checkEnabled = false;
 
     private NetworkPlayerInput _playerInput;
