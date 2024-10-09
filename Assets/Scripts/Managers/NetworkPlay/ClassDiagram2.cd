@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameNetworkManager">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAkgpBIACCMBiAgAcAEQQAABAAAADAGAACAQAAgAEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\GameNetworkManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ConnectionNotificationManager">
+    <Position X="2.75" Y="0.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="ConnectionNotificationManager.ConnectionStatus">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Managers\NetworkPlay\ConnectionNotificationManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQABAAAAACgAAACCECAAACIAAEAAAgEAAAAAAAAAAEg=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\ConnectionNotificationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartSceneUIManager1">
+    <Position X="5.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQFBAAAAAACRkAgAAAICAAAAAAAAEAAAEACAAAAhEA=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\StartSceneUIManager1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneUIManager">
+    <Position X="5.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAQAgA=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\SceneUIManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkGameManager">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="NetworkGameManager.GameState">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Managers\NetworkPlay\NetworkGameManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>oADuiAACAUTABAABUAwAAFBEBAgCeQkEyEAgwigBQFQ=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\NetworkGameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerManager">
+    <Position X="0.5" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AASAAIAAACACBAAAAAAAQAAAAAAAEAAACAgAAAEAABA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerState">
+    <Position X="4.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerAwakeState">
+    <Position X="2.75" Y="17.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerAwakeState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerActivationState">
+    <Position X="5" Y="17.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAEAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerActivationState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerInitiationState">
+    <Position X="2.75" Y="20.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerInitiationState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerRunningState">
+    <Position X="5.5" Y="20.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\PlayerStateManager\NetworkPlayerRunningState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerInfo">
+    <Position X="0.5" Y="19.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAIAAACAAAAAEAAAEAAAAAAAAAQAAAAAAQgEAAAI=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkPlayerInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerController">
+    <Position X="8" Y="16.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AALAAQgAADAAAhAgMCQAggAAAQIBQQAgAAAAAAAQAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkPlayerController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Health">
+    <Position X="8" Y="23.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAEAAEAAEAAAAgAAAAAAIAACAAAAAACgAAA=</HashCode>
+      <FileName>Assets\Scripts\Entities\Health.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerInput">
+    <Position X="10.75" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAABAiABoAAAAAgAQAAAAQggAAIcDAIEAEAAQAA=</HashCode>
+      <FileName>Assets\Scripts\GamePlay\NetworkPlayerInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkLevelManager">
+    <Position X="10" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAQAAAgACAIAgAAAAAAACCAAAAAACAAAgAAAAAAiSE=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\NetworkLevelManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkScoreManager">
+    <Position X="14" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="NetworkScoreManager.ScoreInfo">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\Managers\NetworkPlay\NetworkScoreManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAACCACIgACAAAEEAABgAAAAAEAQKAAgAAAEAAgAAA=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\NetworkScoreManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Level">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAQAAAAgAAAIABAAAAAAYAAAAAAAIAIAAA=</HashCode>
+      <FileName>Assets\Scripts\Entities\Level.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CoopSpawnManager">
+    <Position X="16.25" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EEAAQAIBAAIABgAAAAgAAAAAAAAEBAgAAAIkAAQAEAE=</HashCode>
+      <FileName>Assets\Scripts\Managers\NetworkPlay\CoopSpawnManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerMovement">
+    <Position X="13.25" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAiAAAAAAEAAACAAAAAACAAQEAAAAADAEABA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkPlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerRotation">
+    <Position X="13.25" Y="19.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAiAAAAAAiAAAAAAEAgAAAAAAEAAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkPlayerRotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkObjectPool">
+    <Position X="18.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAAAAQAAAAAAAAAAAEEAAAAAAAAAABUACAAAAAAAAFI=</HashCode>
+      <FileName>Assets\Scripts\Entities\ObjectPools\NetworkObjectPool.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTransformRotation">
+    <Position X="13.25" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAiAAAAAAEAAAAAAAAAAAAAAAAAAACAAEABA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkTransformRotation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkMiniCameraController">
+    <Position X="16" Y="17.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkMiniCameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkPlayerShoot">
+    <Position X="19" Y="15.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>pAaAQgAAIGAAAAEAENACQAJA4AACwwAQAEgABBIgAxA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkPlayerShoot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CommandInvoker">
+    <Position X="21.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAIAAAAAAAgAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Player\SinglePlay\PlayerShooting\CommandInvoker.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShootCommand">
+    <Position X="23.25" Y="17" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\SinglePlay\PlayerShooting\ShootCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkBulletShootStrategy">
+    <Position X="21.5" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAABAAAAAQAAAAAAAAAAAAAAQAAACAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkBulletShootStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkRocketShootStrategy">
+    <Position X="23.5" Y="21" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAABAAAAAQAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkRocketShootStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkCameraController">
+    <Position X="16" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAACIAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\NetworkPlay\NetworkCameraController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkCannonEnemyState">
+    <Position X="5" Y="27" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYABAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Cannon\NetworkCannonEnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkCannonEnemyIdleState">
+    <Position X="3.25" Y="30" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Cannon\NetworkCannonEnemyIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkCannonEnemyAttackState">
+    <Position X="6" Y="30" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgBAAAAQAAAAAAEYAAIAABAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Cannon\NetworkCannonEnemyAttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTankEnemyController">
+    <Position X="9" Y="27" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>IIwAAAAAACCABAAoCAAAABABABBAAAAAAAAEgAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Tank\NetworkTankEnemyController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkTankNav">
+    <Position X="9" Y="32" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Tank\NetworkTankNav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTankEnemyState">
+    <Position X="13.5" Y="27" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYABAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Tank\NetworkTankEnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTankEnemyIdleState">
+    <Position X="12" Y="30" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Tank\NetworkTankEnemyIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTankEnemyAttackState">
+    <Position X="14.5" Y="30" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgBAAAAQAAAAAAEYAAIAABAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Tank\NetworkTankEnemyAttackState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTruckEnemyController">
+    <Position X="17.5" Y="27" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIQAAAAAACAABAAgCAAAABABAABAAAAAAAAAAAAAABA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Truck\NetworkTruckEnemyController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkTruckNav">
+    <Position X="17.5" Y="30.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAACAIAAAAAACAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Truck\NetworkTruckNav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTruckEnemyState">
+    <Position X="22" Y="27" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYABAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Truck\NetworkTruckEnemyState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTruckEnemyIdleState">
+    <Position X="20.5" Y="30" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Truck\NetworkTruckEnemyIdleState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkTruckEnemyRunningState">
+    <Position X="23.25" Y="30" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Truck\NetworkTruckEnemyRunningState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkBossEnemyController">
+    <Position X="26.25" Y="27" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IIwAAAAAACCgBAAgAQAAABAAEBBAIAABAAAEgAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Boss\NetworkBossEnemyController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="NetworkBossNav">
+    <Position X="26.25" Y="32" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAQAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Boss\NetworkBossNav.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkProjectilePlayerInteract">
+    <Position X="29" Y="27" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAABAAAAAAAAQAAAAAAAAAgAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Entities\NetworkProjectilePlayerInteract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkSmallExplosionEffect">
+    <Position X="29" Y="29.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAIACEAAAAgAAAAAAQAACAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Entities\NetworkSmallExplosionEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkBigExplosionEffect">
+    <Position X="29" Y="33" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAIACEAAAAAAAAAAIQAACAAAAAAI=</HashCode>
+      <FileName>Assets\Scripts\Entities\NetworkBigExplosionEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkProjectileEnemyInteract">
+    <Position X="25.5" Y="15.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAIBAAAAAAAAAAIAAAAAAAgABAAATQAAAEAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Entities\NetworkProjectileEnemyInteract.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NetworkCannonEnemyController">
+    <Position X="0.5" Y="27" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAwAAAAAACCABAAoCAAAAAABABAAAAAAAAAEgAAAADA=</HashCode>
+      <FileName>Assets\Scripts\Enemies\NetworkPlay\Cannon\NetworkCannonEnemyController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="IDestroyable">
+    <Position X="8" Y="15.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interfaces\IDestroyable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="ICommand">
+    <Position X="23.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAQAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interfaces\ICommand.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="IshootStrategy">
+    <Position X="22.5" Y="19.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Interfaces\IshootStrategy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
